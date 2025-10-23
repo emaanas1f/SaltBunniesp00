@@ -1,9 +1,16 @@
 # HalfQuick by SaltBunnies
  
-PM: Emaan Asif
+### Roster: 
+- PM: Emaan Asif
+- dev1: James Lei
+- dev2: Kiran Soemardjo
+- dev3: Lucas Zheng
+### Description:
 
-dev1: James Lei
 
-dev2: Kiran Soemardjo
 
-dev3: Lucas Zheng
+### Install Guide:
+
+
+
+### Launch Codes:
