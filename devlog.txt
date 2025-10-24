@@ -10,3 +10,8 @@ emaanA -- 2025-10-22 20:30
 - updated README roster
 - upload design doc
 - created devlog.txt
+
+emaanA -- 2025-10-24 00:00
+INITIAL DD REVIEW:
+- Reorganize some tasks/assignments, make sure everyone has same amount of work to do
+- Rethink database organization, like possibly combining pages and edits, or creating profiles instead 
