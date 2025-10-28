@@ -28,7 +28,7 @@ jamesL -- 2025-10-28 10:20
 - set up basic file structure
 
 jamesL -- 2025-10-28 11:00
-- begun work on creating pages
+- begun work on creating profile/blog routes
 
 lucasZ -- 2025-10-28 11:00
 - created login.html
@@ -44,4 +44,8 @@ kiranS -- 2025-10-28 16:00
 - created database initialization file
 - started work on database methods
 
-
+jamesL -- 2025-10-28 17:00
+- created "functional" app
+- set up auth blueprint
+- set up template inheritance
+- added Install Guide and Launch Codes to README
