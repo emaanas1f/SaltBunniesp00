@@ -27,12 +27,17 @@ emaanA -- 2025-10-28 00:20
 jamesL -- 2025-10-28 10:20
 - set up basic file structure
 
+jamesL -- 2025-10-28 11:00
+- begun work on creating pages
+
 lucasZ -- 2025-10-28 11:00
 - created login.html
 
 emaanA -- 2025-10-28 11:00
-- creating authentication system
+- begun work on authentication system
+- created requirements.txt
 
-
+emaanA -- 2025-10-28 13:00
+- updated devlog to be accurate
 
 
