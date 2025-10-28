@@ -18,3 +18,8 @@ INITIAL DD REVIEW:
 
 emaanA -- 2025-10-26 23:30
 - uploaded new design document reflecting mission pivot
+
+emaanA -- 2025-10-27 23:20
+- Added new table for blogs in order to allow multiple blogs per user
+- Added new html page, blog.html, to frontend. Connected this to profile, home, entry, and edit.
+- uploaded revised design document
