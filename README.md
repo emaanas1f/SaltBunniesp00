@@ -12,6 +12,7 @@
 ### Install Guide:
 #### Prerequisites
 - python 3 installed
+- git installed
 #### Linux:
 ```
 pip install Flask
