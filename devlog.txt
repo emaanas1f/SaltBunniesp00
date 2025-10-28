@@ -23,3 +23,16 @@ emaanA -- 2025-10-28 00:20
 - Added new table for blogs in order to allow multiple blogs per user
 - Added new html page, blog.html, to frontend. Connected this to profile, home, entry, and edit.
 - uploaded revised design document
+
+jamesL -- 2025-10-28 10:20
+- set up basic file structure
+
+lucasZ -- 2025-10-28 11:00
+- created login.html
+
+emaanA -- 2025-10-28 11:00
+- creating authentication system
+
+
+
+
