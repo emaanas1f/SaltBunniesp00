@@ -10,7 +10,14 @@
 
 
 ### Install Guide:
-
-
-
+#### Prerequisites
+- python 3 installed
+#### Linux:
+```
+pip install Flask
+git clone https://github.com/emaanas1f/SaltBunniesp00.git
+```
 ### Launch Codes:
+```
+python3 __init__.py
+```
