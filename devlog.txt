@@ -40,4 +40,8 @@ emaanA -- 2025-10-28 11:00
 emaanA -- 2025-10-28 13:00
 - updated devlog to be accurate
 
+kiranS -- 2025-10-28 16:00
+- created database initialization file
+- started work on database methods
+
 
