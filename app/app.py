@@ -8,27 +8,30 @@ app.register_blueprint(auth.bp)
 
 @app.route('/', methods=['GET'])
 def home():
-    blogs = select_query('SELECT blog_name FROM blogs')
+    blogs = select_query('SELECT id, title FROM blogs')
     return render_template('home.html', blogs)
 
 @app.route('/profile', methods=['GET'])
 def get_profile():
-    username = request.args['username']
-    blogs = select_query("SELECT blog_name FROM blogs WHERE user='?'", [username])
+    user = session['username']
+    blogs = select_query("SELECT id, title FROM blogs WHERE user='?'", [username])
     return render_template('profile.html', blogs)
 
 @app.route('/profile', methods=['POST'])
 def post_profile():
-    blog_name = request.form['name']
+    title = request.form['title']
     content = request.form['content']
-    if len(select_query('SELECT * FROM blogs WHERE blog_name=?', [blog_name])) != 0:
+    user = sesssopm['username']
+    if len(select_query("SELECT * FROM blogs WHERE title='?'", [title])) != 0:
         flash("Blog with that name already exists!")
         return redirect('/profile')
-    inset_query("INSERT into REQUESTS () ## COMPELTE
+    insert_query("blogs", {title, user})
+    blog = select_query("SELECT id FROM blogs WHERE title='?'", [title])
+    return redirect(url_for('blog', id=))
 
 @app.route('/blog', methods=['GET'])
-def blog():
-    blog_name = request.args['name']
+def get_blog():
+    title = request.args['title']
     entries = select_query("SELECT id,content FROM entries WHERE blog='?' SORT BY date_created", [blog_name])
     return render_template('blog.html', entries)
 
