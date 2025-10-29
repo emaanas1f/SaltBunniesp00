@@ -49,3 +49,11 @@ jamesL -- 2025-10-28 17:00
 - set up auth blueprint
 - set up template inheritance
 - added Install Guide and Launch Codes to README
+
+emaanA -- 2025-10-29 00:45
+EXTERNAL README REVIEW: 
+- pip install flask and git clone to install app
+- To launch app: enter python3 __init__.py in terminal
+
+
+
