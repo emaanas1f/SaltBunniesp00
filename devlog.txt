@@ -59,7 +59,7 @@ jamesL -- 2025-10-29 11:00
 - started working on middleware for creating blogs 
 
 kiranS -- 2025-10-29 11:00
-- finished select query method
+- finished select_query method
 
 lucasZ -- 2025-10-29 11:00
 - working on html templats
@@ -70,3 +70,6 @@ emaanA -- 2025-10-29 11:00
 
 jamesL -- 2025-10-29 17:15
 - simplified routing
+
+kiranS -- 2025-10-29 18:00
+- finished insert_query method
