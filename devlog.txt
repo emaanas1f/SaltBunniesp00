@@ -55,5 +55,19 @@ EXTERNAL README REVIEW:
 - pip install flask and git clone to install app
 - To launch app: enter python3 __init__.py in terminal
 
+jamesL -- 2025-10-29 11:00
+- started working on middleware for creating blogs 
+
+kiranS -- 2025-10-29 11:00
+- finished select query method
+
+lucasZ -- 2025-10-29 11:00
+- working on html templats
+
+emaanA -- 2025-10-29 11:00
+- updating devlog 
+- working on authentication system
+
+
 
 
