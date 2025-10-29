@@ -16,9 +16,20 @@ def select_query(query_string, parameters=()):
         out_array.append(item_dict)
     return out_array
 
-print(select_query("SELECT * FROM profiles WHERE username = ? ", ("U1",))) 
+def insert_query(table, data):
+    insertable_data = []
+    for item in data.values():
+        if isinstance(item, str):
+            insertable_data.append("'" + item + "'")
+        else:
+            insertable_data.append(item)
+    print(insertable_data)
+    c.execute(f"INSERT INTO {table} VALUES ({", ".join(insertable_data)});")
+
+# print(select_query("SELECT * FROM profiles WHERE username = ? ", ("U1",))) 
+# insert_query("profiles", {"username":"U3", "password":"pswd"})
+# print(select_query("SELECT * FROM profiles"))
 
 # general query function
-# insert-query function
 db.commit()
 db.close()
