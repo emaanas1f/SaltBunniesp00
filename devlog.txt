@@ -68,6 +68,5 @@ emaanA -- 2025-10-29 11:00
 - updating devlog 
 - working on authentication system
 
-
-
-
+jamesL -- 2025-10-29 17:15
+- simplified routing
