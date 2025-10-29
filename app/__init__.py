@@ -1,10 +1,10 @@
-from flask import Flask, render_template, request, url_for
+from flask import Flask, render_template, request, flash, redirect, session, url_for
+# from db import select_query
 
 app = Flask(__name__)
 
-@app.route('/', methods=['GET'])
-def home():
-    print(url_for('/', values={id: 21}))
+@app.get('/')
+def home_get():
     return render_template('home.html')
 
 if __name__ == "__main__":
