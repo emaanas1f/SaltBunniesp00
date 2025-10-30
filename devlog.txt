@@ -73,3 +73,7 @@ jamesL -- 2025-10-29 17:15
 
 kiranS -- 2025-10-29 18:00
 - finished insert_query method
+
+emaanA -- 2025-10-29 23:15
+- pushed work for auth system 
+- added logout
