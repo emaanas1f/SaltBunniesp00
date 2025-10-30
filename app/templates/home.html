@@ -2,4 +2,18 @@
 {% block title %}Home{% endblock %}
 {% block content %}
 <p>This is our home page</p>
+
+{% if blogs %}
+    <h2>All Blogs</h2>
+    <ul>
+    {% for blog in blogs %}
+        <li>
+            <a href="{{ url_for('blog_get', title=blog.title) }}">{{ blog.title }}</a>
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No blogs found.</p>
+{% endif %}
+
 {% endblock %}
