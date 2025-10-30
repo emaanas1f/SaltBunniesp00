@@ -25,9 +25,8 @@ def profile_post():
     if len(select_query("SELECT * FROM blogs WHERE title='?'", [title])) != 0:
         flash("Blog with that name already exists!")
         return redirect('/profile')
-    insert_query("blogs", {"title": title, "user": user, "content": content})
-    id = select_query("SELECT id FROM blogs WHERE title='?'", [title])
-    return redirect(url_for('blog_get', id=id))
+    new_blog = insert_query("blogs", {"title": title, "user": user, "content": content})
+    return redirect(url_for('blog_get', id=new_blog['id']))
 
 @app.get('/blog')
 def blog_get():
@@ -35,11 +34,28 @@ def blog_get():
     entries = select_query("SELECT id,content FROM entries WHERE blog='?' SORT BY date_created", [title])
     return render_template('blog.html', entries=entries)
 
+@app.post('/blog')
+def blog_post():
+    id = request.args['id']
+    return render_template('create.html', id=id)
+
 @app.get('/entry')
 def entry_get():
-    post_id = request.args[]
-    return render_template('post.html')
+    id = request.args['id']
+    entry = select_query("SELECT content,date_created FROM entries WHERE id=?", [id])
+    return render_template('post.html', entry=entry)
+
+@app.get('/edit')
+def edit_get():
+    id = request.args['id']
+    entry = select_query("SELECT id,content FROM entries WHERE id=?", [id])
+    return render_template('edit.html', entry=entry)
 
 @app.post('/edit')
 def edit_post():
-    if (request.args['type'] == 'create_blog'): ## COMPLETE
+    id = request.args['id']
+    content = request.form['content']
+    user = session['username']
+    new_edit = insert_query("edits", {"user": user, "updated_content": content})
+    general_query("UPDATE entries SET content='?',recent_edit='?' WHERE id=?", [content, new_edit['timestamp'], id])
+    return redirect(url_for("entry_get", id=id))
