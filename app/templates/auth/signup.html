@@ -4,20 +4,20 @@
 <div style="text-align: center;">
 
 <h1>
-    Login
+    Sign Up
 </h1>
 
 <h3>
 
 </h3>
-<form action="/auth", method="get">
+<form action="/auth", method="post">
   <input type="text" name="username" placeholder="username" required>
 <br>
-  <input type="text" name="password" placeholder="password" required>
+  <input type="password" name="password" placeholder="password" required>
+<br>
+  <input type="submit" value="Sign Up">
 </form>
-<form action="/auth", method="get">
-  <input type="submit" value="Login">
-</form>
+
 </div>
 <br>
 {% endblock %}
