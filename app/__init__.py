@@ -5,7 +5,13 @@ app = Flask(__name__)
 
 @app.get('/')
 def home_get():
-    return render_template('home.html')
+    # blogs = select_query('SELECT id, title FROM blogs')
+    blogs = [{"id": 3, "title": "hello"}]
+    return render_template('home.html', blogs=blogs)
+
+@app.get('/blog')
+def blog_get():
+    return
 
 if __name__ == "__main__":
     app.run()
