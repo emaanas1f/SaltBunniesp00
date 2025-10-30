@@ -37,9 +37,6 @@ emaanA -- 2025-10-28 11:00
 - begun work on authentication system
 - created requirements.txt
 
-emaanA -- 2025-10-28 13:00
-- updated devlog to be accurate
-
 kiranS -- 2025-10-28 16:00
 - created database initialization file
 - started work on database methods
@@ -65,7 +62,6 @@ lucasZ -- 2025-10-29 11:00
 - working on html templats
 
 emaanA -- 2025-10-29 11:00
-- updating devlog 
 - working on authentication system
 
 jamesL -- 2025-10-29 17:15
@@ -77,3 +73,15 @@ kiranS -- 2025-10-29 18:00
 emaanA -- 2025-10-29 23:15
 - pushed work for auth system 
 - added logout
+
+kiranS -- 2025-10-30 11:00
+- fixed f string issues closing cursors 
+
+lucasZ -- 2025-10-30 11:00
+- signup.html 
+
+jamesL -- 2025-10-30 11:00
+- started middleware work on editing entries 
+
+emaanA -- 2025-10-30 11:00
+- worked on python module dependencies 
