@@ -27,15 +27,18 @@ def insert_query(table, data):
 #        else:
 #            insertable_data.append(item)
     # print(insertable_data)
-    print(data.values())
+#    print(data.values())
     placeholder = ["?"] * len(data)
-    c.execute(f"INSERT INTO {table} VALUES ({', '.join(placeholder)});", tuple(data.values()))
+    c.execute(f"INSERT INTO {table} VALUES ({', '.join(placeholder)}) RETURNING rowid;", tuple(data.values()))
+    row = c.fetchall()[0][0]
     c.close()
     db.commit()
+    output = dict(row = row)
+    return output
 
-#print(select_query("SELECT * FROM profiles WHERE username = ? ", ("U1",))) 
-#insert_query("profiles", {"username":"U3", "password":"pswd"})
-#print(select_query("SELECT * FROM profiles"))
+print(select_query("SELECT * FROM profiles WHERE username = ? ", ("U1",))) 
+print(insert_query("profiles", {"username":"U3", "password":"pswd"}))
+print(select_query("SELECT * FROM profiles"))
 
 
 
