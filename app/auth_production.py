@@ -11,19 +11,4 @@ def login():
             return redirect(url_for('home_get'))
         else:
             return render_template('auth/login.html', error='Please enter a username')
-
     return render_template('auth/login.html')
-
-@bp.route('/home')
-def home():
-    if 'username' not in session:
-        return redirect(url_for('auth.login'))
-    return render_template('home.html', username=session['username'])
-
-#logout 
-@bp.route('/logout')
-   def logout():
-   session.pop('username', None)
-    return redirect(url_for('auth.login'))
-
-
