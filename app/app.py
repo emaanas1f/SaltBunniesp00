@@ -45,6 +45,20 @@ def entry_get():
     entry = select_query("SELECT content,date_created FROM entries WHERE id=?", [id])
     return render_template('post.html', entry=entry)
 
+@app.get('/create')
+def create_get():
+    id = request.args['id']
+    return render_template('create.html', id=id)
+
+@app.post('/create')
+def create_post():
+    id = request.args['id']
+    content = request.form['content']
+    user = session['username']
+    new_entry = insert_query("entries", {"blog": id, "content": content, "user": user})
+    new_edit = insert_query("edits", {"entry": new_entry['id'], "updated_content": content})
+    return redirect(url_for("entry_get", id=id))
+
 @app.get('/edit')
 def edit_get():
     id = request.args['id']
@@ -56,6 +70,6 @@ def edit_post():
     id = request.args['id']
     content = request.form['content']
     user = session['username']
-    new_edit = insert_query("edits", {"user": user, "updated_content": content})
+    new_edit = insert_query("edits", {"entry": id, "user": user, "updated_content": content})
     general_query("UPDATE entries SET content='?',recent_edit='?' WHERE id=?", [content, new_edit['timestamp'], id])
     return redirect(url_for("entry_get", id=id))
