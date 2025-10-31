@@ -86,6 +86,10 @@ jamesL -- 2025-10-30 11:00
 emaanA -- 2025-10-30 11:00
 - worked on python module dependencies 
 
-jamesL -- 2025-10-20 20:15
+jamesL -- 2025-10-30 20:15
 - moved part of authentification to production
 - linked home to database
+
+emaanA -- 2025-10-31 2:00
+- python module dependencies in place, with correct package list 
+- description of project added to main readme
