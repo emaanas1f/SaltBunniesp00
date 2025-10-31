@@ -75,13 +75,17 @@ emaanA -- 2025-10-29 23:15
 - added logout
 
 kiranS -- 2025-10-30 11:00
-- fixed f string issues closing cursors 
+- fixed f-string issues closing cursors 
 
 lucasZ -- 2025-10-30 11:00
-- signup.html 
+- created signup.html 
 
 jamesL -- 2025-10-30 11:00
 - started middleware work on editing entries 
 
 emaanA -- 2025-10-30 11:00
 - worked on python module dependencies 
+
+jamesL -- 2025-10-20 20:15
+- moved part of authentification to production
+- linked home to database
