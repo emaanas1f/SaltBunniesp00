@@ -4,6 +4,14 @@
     <title>{% block title %}{% endblock %}</title>
   </head>
   <body>
+    <header>
+      {% if 'username' in session.keys() %}
+      <a href="{{ url_for('auth.logout_get') }}">Log Out</a>
+      {{ else }}
+      <a href="{{ url_for('auth.login_get') }}">Log In</a>
+      <a href="{{ url_for('auth.signup_get') }}">Sign Up</a>
+      {% endif %}
+    </header>
     {% block content %}
     {% endblock %}
   </body>
