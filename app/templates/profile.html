@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Profile{% endblock %}
+{% block content %}
+
+<h2> {{ user }} </h2>
+
+{% if blogs %}
+    <h2>All Blogs</h2>
+    <ul>
+    {% for blog in blogs %}
+        <li>
+            <a href="{{ url_for('blog_get', title=blog.title) }}">{{ blog.title }}</a>
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No blogs found.</p>
+{% endif %}
+
+<form>
+    <input type="submit" value="Create Blog">
+</form>
+
+{% endblock %}
