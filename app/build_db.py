@@ -9,11 +9,11 @@ c.executescript("""
     DROP TABLE IF EXISTS profiles;
     CREATE TABLE profiles (username TEXT PRIMARY KEY, password TEXT);
     DROP TABLE IF EXISTS blogs;
-    CREATE TABLE blogs (id INTEGER PRIMARY KEY, title TEXT, user TEXT, date_created DATETIME, FOREIGN KEY (user) REFERENCES profile(username));
+    CREATE TABLE blogs (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT UNIQUE, user TEXT, date_created DATETIME DEFAULT CURRENT_TIMESTAMP, FOREIGN KEY (user) REFERENCES profiles(username));
     DROP TABLE IF EXISTS entries;
-    CREATE TABLE entries (blog INTEGER, id INTEGER PRIMARY KEY, date_created DATETIME, content TEXT, recent_edit DATETIME, FOREIGN KEY (blog) REFERENCES blogs(id));
+    CREATE TABLE entries (blog INTEGER, id INTEGER PRIMARY KEY AUTOINCREMENT, date_created DATETIME DEFAULT CURRENT_TIMESTAMP, content TEXT, recent_edit DATETIME, FOREIGN KEY (blog) REFERENCES blogs(id));
     DROP TABLE IF EXISTS edits;
-    CREATE TABLE edits (entry_id INTEGER, user TEXT, timestamp DATETIME, updated_content TEXT, FOREIGN KEY (entry_id) REFERENCES entries(id), FOREIGN KEY (user) REFERENCES profile(username));
+    CREATE TABLE edits (entry INTEGER, user TEXT, timestamp DATETIME DEFAULT CURRENT_TIMESTAMP, updated_content TEXT, FOREIGN KEY (entry) REFERENCES entries(id), FOREIGN KEY (user) REFERENCES profiles(username));
     """)
 
 c.execute("INSERT INTO profiles VALUES ('U1', 'pwrd1');")
