@@ -94,6 +94,19 @@ emaanA -- 2025-10-31 2:00
 - python module dependencies in place, with correct package list 
 - description of project added to main readme
 
+kiranS -- 2025-10-31 11:30
+- fixing build_db
+- return for insert_query
+
+lucasZ -- 2025-10-31 11:30
+- added profile.html and edit.html
+
+jamesL -- 2025-10-31 11:30
+- continued middleware work on editing entries 
+
+emaanA -- 2025-10-31 11:30
+- continued work on authentication system
+
 jamesL -- 2025-11-02 8:00
 - moved login, logout, profile, and signup to production
 - added flash and header
