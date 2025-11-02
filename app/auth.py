@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for, session, flash
+from db import select_query, insert_query
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 
@@ -10,7 +11,7 @@ def signup_get():
 def signup_post():
     username = request.form.get('username')
     password = request.form.get('password')
-    if len(select_query("SELECT * FROM profiles WHERE username='?'", [username])) != 0:
+    if len(select_query("SELECT * FROM profiles WHERE username=?", [username])) != 0:
         flash('Username already exists.', 'error')
         return redirect(url_for('auth.signup_get'))
     insert_query("profiles", {"username": username, "password": password})
@@ -25,22 +26,15 @@ def login_get():
 def login_post():
     username = request.form.get('username')
     password = request.form.get('password')
-    if len(select_query("SELECT * FROM profiles WHERE username='?'", [username])) !=0
+    if len(select_query("SELECT * FROM profiles WHERE username=?", [username])) !=0
         flash(f'Welcome back, {username}!', 'success')
-        return redirect(url_for('auth.home_get'))
+        return redirect(url_for('home_get'))
     else:
         flash('Invalid username or password.', 'error')
         return redirect(url_for('auth.login_get'))
-
-@bp.get('/home')
-def home_get():
-    if 'username' not in session:
-        flash('Please log in to continue.', 'error')
-        return redirect(url_for('auth.login'))
-    return render_template('home.html', username=session['username'])
 
 @bp.get('/logout')
 def logout_get():
     session.pop('username', None)
     flash('You have been logged out.', 'info')
-    return redirect(url_for('auth.login'))
+    return redirect(url_for('auth.login_get'))

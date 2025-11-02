@@ -5,13 +5,24 @@
   </head>
   <body>
     <header>
+      <a href="{{ url_for('home_get') }}">Home</a>
       {% if 'username' in session.keys() %}
       <a href="{{ url_for('auth.logout_get') }}">Log Out</a>
-      {{ else }}
+      <a href="{{ url_for('profile_get') }}">Profile</a>
+      {% else %}
       <a href="{{ url_for('auth.login_get') }}">Log In</a>
       <a href="{{ url_for('auth.signup_get') }}">Sign Up</a>
       {% endif %}
     </header>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <ul class=flashes>
+        {% for category, message in messages %}
+          <li class="{{ category }}">{{ message }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
     {% block content %}
     {% endblock %}
   </body>

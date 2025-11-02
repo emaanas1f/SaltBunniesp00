@@ -17,3 +17,13 @@ def select_query(query_string, parameters=()):
     c.close()
     db.commit()
     return out_array
+
+def insert_query(table, data):
+    c = db.cursor()
+    placeholder = ["?"] * len(data)
+    c.execute(f"INSERT INTO {table} VALUES ({', '.join(placeholder)}) RETURNING rowid;", tuple(data.values()))
+    row = c.fetchall()[0][0]
+    c.close()
+    db.commit()
+    output = dict(row = row)
+    return output

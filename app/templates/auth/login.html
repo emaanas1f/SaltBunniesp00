@@ -7,12 +7,9 @@
     Login
 </h1>
 
-<form action="/auth", method="get">
-  <input type="text" name="username" placeholder="username" required>
-<br>
+<form action="/auth/login", method="post">
+  <input type="text" name="username" placeholder="username" required><br/>
   <input type="text" name="password" placeholder="password" required>
-</form>
-<form action="/auth", method="get">
   <input type="submit" value="Login">
 </form>
 
