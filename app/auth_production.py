@@ -1,5 +1,6 @@
-from flask import Blueprint, render_template, request, redirect, url_for, session, flash
+from flask import Blueprint, render_template, request, redirect, url_for, session, flash, make_response
 from db_production import select_query, insert_query
+from werkzeug.security import generate_password_hash, check_password_hash
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 
@@ -13,8 +14,9 @@ def signup_post():
     password = request.form.get('password')
     if len(select_query("SELECT * FROM profiles WHERE username=?", [username])) != 0:
         flash('Username already exists.', 'error')
-        return redirect(url_for('auth.signup_get'))
-    insert_query("profiles", {"username": username, "password": password})
+        return redirect(url_for('auth.signup_get'))   
+    hashed_password = generate_password_hash(password)
+    insert_query("profiles", {"username": username, "password": hashed_password})
     flash('Sign up successful! Please log in.', 'success')
     return redirect(url_for('auth.login_get'))
 
@@ -24,8 +26,16 @@ def login_get():
 
 @bp.post('/login')
 def login_post():
-    session['username'] = request.form.get('username')
-    return redirect(url_for('home_get'))
+    username = request.form.get('username')
+    password = request.form.get('password')
+    rows = select_query("SELECT * FROM profiles WHERE username=?", [username])
+    if len(rows) != 0 and check_password_hash(rows[0]['password'], password):
+        session['username'] = username
+        flash(f'Welcome back, {username}!', 'success')
+        return redirect(url_for('home_get'))
+    else:
+        flash('Invalid username or password.', 'error')
+        return redirect(url_for('auth.login_get'))
 
 @bp.get('/logout')
 def logout_get():
