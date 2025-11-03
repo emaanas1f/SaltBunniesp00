@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Blog{% endblock %}
+{% block content %}
+
+{% if entries %}
+    <h2>Blog Entries</h2>
+    <ul>
+    {% for entry in entries %}
+        <li>
+            <a href="{{ url_for('entry_get', id=entry.id) }}">Entry {{ entry.id }}</a>
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No entries found in this blog.</p>
+{% endif %}
+
+{% if session.username %}
+    <a href="{{ url_for('create_get', id=request.args.get('id')) }}">
+        <button>Add New Entry</button>
+    </a>
+{% endif %}
+
+{% endblock %}

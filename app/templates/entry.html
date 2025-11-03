@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Entry{% endblock %}
+{% block content %}
+
+{% if entry %}
+    {% for e in entry %}
+        <article>
+            <p>{{ e.content }}</p>
+            <small>Created on: {{ e.date_created }}</small>
+        </article>
+        
+        {% if session.username %}
+            <a href="{{ url_for('edit_get', id=request.args.get('id')) }}">
+                <button>Edit Entry</button>
+            </a>
+        {% endif %}
+    {% endfor %}
+{% else %}
+    <p>Entry not found.</p>
+{% endif %}
+
+{% endblock %}

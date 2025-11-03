@@ -1,13 +1,14 @@
 {% extends "base.html" %}
 {% block title %}Home{% endblock %}
 {% block content %}
-<p>This is our home page</p>
+<p>Welcome to our Wiki!</p>
+
 {% if blogs %}
     <h2>All Blogs</h2>
     <ul>
     {% for blog in blogs %}
         <li>
-            <a href="{{ url_for('blog_get', title=blog.title) }}">{{ blog.title }}</a>
+            <a href="{{ url_for('blog_get', id=blog.id) }}">{{ blog.title }}</a>
         </li>
     {% endfor %}
     </ul>

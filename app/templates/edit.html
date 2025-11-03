@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Edit Entry{% endblock %}
+{% block content %}
+
+<h2>Edit Entry</h2>
+{% if entry %}
+    {% for e in entry %}
+    <form method="POST" action="{{ url_for('edit_post', id=e.id) }}">
+        <textarea name="content" rows="10" cols="50" required>{{ e.content }}</textarea><br>
+        <input type="submit" value="Save Changes">
+    </form>
+    {% endfor %}
+{% else %}
+    <p>Entry not found.</p>
+{% endif %}
+
+{% endblock %}
