@@ -17,7 +17,8 @@
     <p>No blogs found.</p>
 {% endif %}
 
-<form>
+<form method="post" action="{{ url_for('profile_post') }}">
+    <input type="text" name="title">
     <input type="submit" value="Create Blog">
 </form>
 
