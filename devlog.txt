@@ -113,3 +113,6 @@ jamesL -- 2025-11-02 8:00
 
 emaanA -- 2025-11-02 14:15
 - added checking for password & password hashing
+
+lucasZ -- 2025-11-03 1:30 
+- added html pages 
