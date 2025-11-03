@@ -27,3 +27,5 @@ def insert_query(table, data):
     db.commit()
     output = dict(row = row)
     return output
+
+
