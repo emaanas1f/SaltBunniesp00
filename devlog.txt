@@ -59,7 +59,7 @@ kiranS -- 2025-10-29 11:00
 - finished select_query method
 
 lucasZ -- 2025-10-29 11:00
-- working on html templats
+- working on html templates
 
 emaanA -- 2025-10-29 11:00
 - working on authentication system
@@ -90,7 +90,7 @@ jamesL -- 2025-10-30 20:15
 - moved part of authentification to production
 - linked home to database
 
-emaanA -- 2025-10-31 2:00
+emaanA -- 2025-10-31 14:00
 - python module dependencies in place, with correct package list 
 - description of project added to main readme
 
@@ -107,14 +107,14 @@ jamesL -- 2025-10-31 11:30
 emaanA -- 2025-10-31 11:30
 - continued work on authentication system
 
-jamesL -- 2025-11-02 8:00
+jamesL -- 2025-11-02 08:00
 - moved login, logout, profile, and signup to production
 - added flash and header
 
 emaanA -- 2025-11-02 14:15
 - added checking for password & password hashing
 
-lucasZ -- 2025-11-03 1:30 
+lucasZ -- 2025-11-03 01:30 
 - added html pages 
 
 kiranS -- 2025-11-03 11:00
@@ -128,4 +128,8 @@ jamesL -- 2025-11-03 11:00
 
 emaanA - 2025-11-03 11:00 
 - updating readme 
+
+kiranS -- 2025-11-09 18:00
+- added general_query method
+- fixed insert_query output content
  
