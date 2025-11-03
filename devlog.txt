@@ -122,3 +122,10 @@ kiranS -- 2025-11-03 11:00
 
 lucasZ -- 2025-11-03 11:00
 - finish functionality for authentication pages
+
+jamesL -- 2025-11-03 11:00
+- began moving blog creation to production
+
+emaanA - 2025-11-03 11:00 
+- updating readme 
+ 
