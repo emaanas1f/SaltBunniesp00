@@ -14,10 +14,11 @@ A web-based blogging platform where users can create accounts, log in, and creat
 - git installed
 #### Linux:
 ```
-pip install Flask
-git clone https://github.com/emaanas1f/SaltBunniesp00.git
+git clone git@github.com:emaanas1f/SaltBunniesp00.git
+pip install -r requirements.txt
 ```
 ### Launch Codes:
 ```
+cd SaltBunnies/app
 python3 __init__.py
 ```
