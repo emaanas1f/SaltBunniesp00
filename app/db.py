@@ -20,25 +20,19 @@ def select_query(query_string, parameters=()):
 
 def insert_query(table, data):
     c = db.cursor()
-#    insertable_data = []
-#    for item in data.values():
-#        if isinstance(item, str):
-#            insertable_data.append("'" + item + "'")
-#        else:
-#            insertable_data.append(item)
-    # print(insertable_data)
-#    print(data.values())
     placeholder = ["?"] * len(data)
-    c.execute(f"INSERT INTO {table} VALUES ({', '.join(placeholder)}) RETURNING rowid;", tuple(data.values()))
+    c.execute(f"INSERT INTO {table} {tuple(data.keys())} VALUES ({', '.join(placeholder)}) RETURNING rowid;", tuple(data.values()))
     row = c.fetchall()[0][0]
     c.close()
     db.commit()
     output = dict(row = row)
     return output
 
-print(select_query("SELECT * FROM profiles WHERE username = ? ", ("U1",))) 
-print(insert_query("profiles", {"username":"U3", "password":"pswd"}))
-print(select_query("SELECT * FROM profiles"))
-
+#print(select_query("SELECT * FROM profiles WHERE username = ? ", ("U1",))) 
+#print(insert_query("profiles", {"username":"U3", "password":"pswd"}))
+#print(select_query("SELECT * FROM profiles"))
+#
+#print(insert_query("blogs", {"title": "Bg3", "user": "U3"}))
+#print(select_query("SELECT * FROM blogs"))
 
 

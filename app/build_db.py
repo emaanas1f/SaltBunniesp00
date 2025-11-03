@@ -16,10 +16,10 @@ c.executescript("""
     CREATE TABLE edits (entry INTEGER, user TEXT, timestamp DATETIME DEFAULT CURRENT_TIMESTAMP, updated_content TEXT, FOREIGN KEY (entry) REFERENCES entries(id), FOREIGN KEY (user) REFERENCES profiles(username));
     """)
 
-c.execute("INSERT INTO profiles VALUES ('U1', 'pwrd1');")
-c.execute("INSERT INTO profiles VALUES ('U2', 'pwrd2');")
-c.execute("INSERT INTO blogs (title, user) VALUES ('Bg1', 'U1')")
-c.execute("INSERT INTO blogs (title, user) VALUES ('Bg2', 'U1')")
+#c.execute("INSERT INTO profiles VALUES ('U1', 'pwrd1');")
+#c.execute("INSERT INTO profiles VALUES ('U2', 'pwrd2');")
+#c.execute("INSERT INTO blogs (title, user) VALUES ('Bg1', 'U1')")
+#c.execute("INSERT INTO blogs (title, user) VALUES ('Bg2', 'U1')")
 
 db.commit()
 db.close()
