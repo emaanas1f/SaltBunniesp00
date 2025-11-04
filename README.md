@@ -22,5 +22,6 @@ pip install -r requirements.txt
 ```
 ### Launch Codes:
 ```
+python3 app/build_db.py
 python3 app/__init__.py
 ```
