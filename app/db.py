@@ -30,17 +30,8 @@ def insert_query(table, data):
     db.commit()
     return output
 
-def general_query(query_string):
+def general_query(query_string, parameters=()):
     c = db.cursor()
-    c.execute(query_string)
+    c.execute(query_string, parameters)
     c.close()
     db.commit()
-    
-#print(select_query("SELECT * FROM profiles WHERE username = ? ", ("U1",))) 
-#print(insert_query("profiles", {"username":"U3", "password":"pswd"}))
-#print(select_query("SELECT * FROM profiles"))
-#print(insert_query("blogs", {"title": "Bg3", "user": "U3"}))
-#general_query("INSERT INTO blogs (title, user) VALUES ('Bg3', 'U3')")
-#print(select_query("SELECT * FROM blogs"))
-
-

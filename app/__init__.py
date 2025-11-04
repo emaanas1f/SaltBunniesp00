@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, flash, redirect, session, url_for
-from db_production import select_query, insert_query
+from db import select_query, insert_query, general_query
 
 app = Flask(__name__)
 app.secret_key = "dkjflkaklkjdfsa"
@@ -12,12 +12,6 @@ def home_get():
     blogs = select_query('SELECT id, title FROM blogs')
     print(blogs)
     return render_template('home.html', blogs=blogs)
-
-@app.get('/blog')
-def blog_get():
-    title = request.args['title']
-    entries = select_query("SELECT id,content FROM entries WHERE blog=? SORT BY date_created", [title])
-    return render_template('blog.html', entries=entries)
 
 @app.get('/profile')
 def profile_get():
@@ -34,6 +28,47 @@ def profile_post():
         return redirect('/profile')
     new_blog = insert_query("blogs", {"title": title, "user": user})
     return redirect(url_for('blog_get', id=new_blog['id']))
+
+@app.get('/blog')
+def blog_get():
+    id = request.args['id']
+    entries = select_query("SELECT id,content FROM entries WHERE blog=? ORDER BY date_created", [id])
+    return render_template('blog.html', entries=entries)
+
+@app.get('/create')
+def create_get():
+    id = request.args['id']
+    return render_template('create.html', id=id)
+
+@app.post('/create')
+def create_post():
+    id = request.args['id']
+    content = request.form['content']
+    new_entry = insert_query("entries", {"blog": id, "content": content})
+    insert_query("edits", {"entry": new_entry['id'], "updated_content": content})
+    return redirect(url_for("entry_get", id=id))
+
+@app.get('/entry')
+def entry_get():
+    id = request.args['id']
+    entry = select_query("SELECT * FROM entries WHERE id=?", [id])
+    print(entry)
+    return render_template('entry.html', entry=entry)
+
+@app.get('/edit')
+def edit_get():
+    id = request.args['id']
+    entry = select_query("SELECT id,content FROM entries WHERE id=?", [id])
+    return render_template('edit.html', entry=entry)
+
+@app.post('/edit')
+def edit_post():
+    id = request.args['id']
+    content = request.form['content']
+    user = session['username']
+    new_edit = insert_query("edits", {"entry": id, "user": user, "updated_content": content})
+    general_query("UPDATE entries SET content=?,recent_edit=? WHERE id=?", [content, new_edit['timestamp'], id])
+    return redirect(url_for("entry_get", id=id))
 
 if __name__ == "__main__":
     app.run()
