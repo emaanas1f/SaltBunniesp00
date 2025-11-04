@@ -15,7 +15,7 @@
     <p>No entries found in this blog.</p>
 {% endif %}
 
-{% if session.username %}
+{% if session.username == author %}
     <a href="{{ url_for('create_get', id=request.args.get('id')) }}">
         <button>Add New Entry</button>
     </a>

@@ -33,7 +33,8 @@ def profile_post():
 def blog_get():
     id = request.args['id']
     entries = select_query("SELECT id,content FROM entries WHERE blog=? ORDER BY date_created", [id])
-    return render_template('blog.html', entries=entries)
+    author = select_query("SELECT * FROM blogs WHERE id=?", [id])[0]['user']
+    return render_template('blog.html', entries=entries, author=author)
 
 @app.get('/create')
 def create_get():
@@ -51,9 +52,9 @@ def create_post():
 @app.get('/entry')
 def entry_get():
     id = request.args['id']
-    entry = select_query("SELECT * FROM entries WHERE id=?", [id])
-    print(entry)
-    return render_template('entry.html', entry=entry)
+    entry = select_query("SELECT * FROM entries WHERE id=?", [id])[0]
+    author = select_query("SELECT * FROM blogs WHERE id=?", [entry['blog']])[0]['user']
+    return render_template('entry.html', entry=entry, author=author)
 
 @app.get('/edit')
 def edit_get():
