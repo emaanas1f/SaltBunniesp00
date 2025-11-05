@@ -143,3 +143,9 @@ EXTERNAL README REVIEW:
 
 kiranS -- 2025-11-05 11:00
 - added view and like functionality to database
+
+jamesL -- 2025-11-05 11:00 
+- started work on different fields in blogs
+
+emaanA -- 2025-11-05 11:00
+- messed around with css for html pages for auth
