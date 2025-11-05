@@ -35,6 +35,15 @@ def blog_get():
     entries = select_query("SELECT id,content FROM entries WHERE blog=? ORDER BY date_created", [id])
     return render_template('blog.html', entries=entries)
 
+def translate_to(dictionary):
+    output = ""
+    for key in dictionary:
+        output += key.split('-', 1)[1]
+        output += dictionary[key].replace('|', "\|")
+        output += "|||"
+    output = output[:-3]
+    return output;
+
 @app.get('/create')
 def create_get():
     id = request.args['id']
@@ -43,6 +52,8 @@ def create_get():
 @app.post('/create')
 def create_post():
     id = request.args['id']
+    for keys in request.form:
+        keys.split
     content = request.form['content']
     new_entry = insert_query("entries", {"blog": id, "content": content})
     insert_query("edits", {"entry": new_entry['id'], "updated_content": content})
