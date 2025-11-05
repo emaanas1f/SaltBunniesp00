@@ -140,3 +140,6 @@ emaanA -- 2025-11-04 21:00
 EXTERNAL README REVIEW:
 - add venv instructions and pip install -r requirements.txt (install guide)
 - add which directory __init__.py is in (launch codes)
+
+kiranS -- 2025-11-05 11:00
+- added view and like functionality to database
