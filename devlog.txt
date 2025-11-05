@@ -135,3 +135,8 @@ kiranS -- 2025-11-03 18:00
  
 jamesL -- 2025-11-03 19:00
 - moved entry creation, editing, and viewing to production
+
+emaanA -- 2025-11-04 21:00
+EXTERNAL README REVIEW:
+- add venv instructions and pip install -r requirements.txt (install guide)
+- add which directory __init__.py is in (launch codes)
