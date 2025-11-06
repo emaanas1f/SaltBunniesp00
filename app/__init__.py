@@ -10,13 +10,12 @@ app.register_blueprint(auth_production.bp)
 @app.get('/')
 def home_get():
     blogs = select_query('SELECT id, title FROM blogs')
-    print(blogs)
     return render_template('home.html', blogs=blogs)
 
 @app.get('/profile')
 def profile_get():
     user = session['username']
-    blogs = select_query("SELECT id, title FROM blogs WHERE user=?", [user])
+    blogs = select_query("SELECT id, title FROM blogs WHERE author=?", [user])
     return render_template('profile.html', blogs=blogs)
 
 @app.post('/profile')
@@ -26,15 +25,15 @@ def profile_post():
     if len(select_query("SELECT * FROM blogs WHERE title=?", [title])) != 0:
         flash("Blog with that name already exists!")
         return redirect('/profile')
-    new_blog = insert_query("blogs", {"title": title, "user": user})
+    new_blog = insert_query("blogs", {"title": title, "author": user})
     return redirect(url_for('blog_get', id=new_blog['id']))
 
 @app.get('/blog')
 def blog_get():
     id = request.args['id']
     entries = select_query("SELECT id,content FROM entries WHERE blog=? ORDER BY date_created", [id])
-    author = select_query("SELECT * FROM blogs WHERE id=?", [id])[0]['user']
-    return render_template('blog.html', entries=entries, author=author)
+    blog = select_query("SELECT * FROM blogs WHERE id=?", [id])[0]
+    return render_template('blog.html', entries=entries, blog=blog)
 
 @app.get('/create')
 def create_get():
@@ -53,8 +52,8 @@ def create_post():
 def entry_get():
     id = request.args['id']
     entry = select_query("SELECT * FROM entries WHERE id=?", [id])[0]
-    author = select_query("SELECT * FROM blogs WHERE id=?", [entry['blog']])[0]['user']
-    return render_template('entry.html', entry=entry, author=author)
+    blog = select_query("SELECT * FROM blogs WHERE id=?", [entry['blog']])[0]
+    return render_template('entry.html', entry=entry, blog=blog)
 
 @app.get('/edit')
 def edit_get():

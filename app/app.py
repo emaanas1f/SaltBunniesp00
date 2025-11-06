@@ -37,12 +37,24 @@ def blog_get():
 
 def translate_to(dictionary):
     output = ""
+    # p-lorem ipsum|||
     for key in dictionary:
         output += key.split('-', 1)[1]
+        output += "-"
         output += dictionary[key].replace('|', "\|")
         output += "|||"
     output = output[:-3]
     return output;
+
+def translate_from(string):
+    output = {}
+    # {"p": "lorem ipsum"}
+    partial = string.split("|||")
+    for field in partial:
+        field = field.replace("\|", "|")
+        field = field.split("-", 1)
+        output[field[0]] = field[1]
+    return output
 
 @app.get('/create')
 def create_get():
