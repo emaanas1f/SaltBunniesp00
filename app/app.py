@@ -7,17 +7,20 @@ app.secret_key = "dkjflkaklkjdfsa"
 import auth
 app.register_blueprint(auth.bp)
 
+# displays all blogs
 @app.get('/')
 def home_get():
     blogs = select_query('SELECT id, title FROM blogs')
     return render_template('home.html', blogs=blogs)
 
+# display created blogs
 @app.get('/profile')
 def profile_get():
     user = session['username']
     blogs = select_query("SELECT id, title FROM blogs WHERE author=?", [user])
     return render_template('profile.html', blogs=blogs)
 
+# create blog
 @app.post('/profile')
 def profile_post():
     title = request.form['title']
@@ -28,12 +31,20 @@ def profile_post():
     new_blog = insert_query("blogs", {"title": title, "author": user})
     return redirect(url_for('blog_get', id=new_blog['id']))
 
+# display selected blog
 @app.get('/blog')
 def blog_get():
     id = request.args['id']
     entries = select_query("SELECT id,content FROM entries WHERE blog=? ORDER BY date_created", [id])
+<<<<<<< HEAD
     blog = select_query("SELECT * FROM blogs WHERE id=?", [id])[0]
     return render_template('blog.html', entries=entries, blog=blog)
+=======
+    general_query("UPDATE blog SET views = views + 1 WHERE id=?", [id])
+    return render_template('blog.html', entries=entries)
+>>>>>>> ff977705e0d889b9b6b1c74c1949dca76dd86ea6
+
+#use blog_post for follow
 
 def translate_to(dictionary):
     output = ""
@@ -69,6 +80,7 @@ def create_post():
     insert_query("edits", {"entry": new_entry['id'], "updated_content": content})
     return redirect(url_for("entry_get", id=id))
 
+# display specific entry
 @app.get('/entry')
 def entry_get():
     id = request.args['id']
@@ -79,12 +91,14 @@ def entry_get():
     prev = select_query("SELECT * FROM entries WHERE blog=? AND id<? LIMIT 1", [entry['blog'], id])
     return render_template('entry.html', entry=entry, blog=blog, next=next, prev=prev)
 
+# get content to edit entry
 @app.get('/edit')
 def edit_get():
     id = request.args['id']
     entry = select_query("SELECT id,content FROM entries WHERE id=?", [id])
     return render_template('edit.html', entry=entry)
 
+# update entry with new content
 @app.post('/edit')
 def edit_post():
     id = request.args['id']
