@@ -10,13 +10,12 @@ app.register_blueprint(auth.bp)
 @app.get('/')
 def home_get():
     blogs = select_query('SELECT id, title FROM blogs')
-    print(blogs)
     return render_template('home.html', blogs=blogs)
 
 @app.get('/profile')
 def profile_get():
     user = session['username']
-    blogs = select_query("SELECT id, title FROM blogs WHERE user=?", [user])
+    blogs = select_query("SELECT id, title FROM blogs WHERE author=?", [user])
     return render_template('profile.html', blogs=blogs)
 
 @app.post('/profile')
@@ -26,14 +25,15 @@ def profile_post():
     if len(select_query("SELECT * FROM blogs WHERE title=?", [title])) != 0:
         flash("Blog with that name already exists!")
         return redirect('/profile')
-    new_blog = insert_query("blogs", {"title": title, "user": user})
+    new_blog = insert_query("blogs", {"title": title, "author": user})
     return redirect(url_for('blog_get', id=new_blog['id']))
 
 @app.get('/blog')
 def blog_get():
     id = request.args['id']
     entries = select_query("SELECT id,content FROM entries WHERE blog=? ORDER BY date_created", [id])
-    return render_template('blog.html', entries=entries)
+    blog = select_query("SELECT * FROM blogs WHERE id=?", [id])[0]
+    return render_template('blog.html', entries=entries, blog=blog)
 
 def translate_to(dictionary):
     output = ""
@@ -64,9 +64,7 @@ def create_get():
 @app.post('/create')
 def create_post():
     id = request.args['id']
-    for keys in request.form:
-        keys.split
-    content = request.form['content']
+    content = translate_to(request.form['content'])
     new_entry = insert_query("entries", {"blog": id, "content": content})
     insert_query("edits", {"entry": new_entry['id'], "updated_content": content})
     return redirect(url_for("entry_get", id=id))
@@ -74,9 +72,12 @@ def create_post():
 @app.get('/entry')
 def entry_get():
     id = request.args['id']
-    entry = select_query("SELECT * FROM entries WHERE id=?", [id])
-    print(entry)
-    return render_template('entry.html', entry=entry)
+    entry = select_query("SELECT * FROM entries WHERE id=?", [id])[0]
+    entry[]
+    blog = select_query("SELECT * FROM blogs WHERE id=?", [entry['blog']])[0]
+    next = select_query("SELECT * FROM entries WHERE blog=? AND id>? LIMIT 1", [entry['blog'], id])
+    prev = select_query("SELECT * FROM entries WHERE blog=? AND id<? LIMIT 1", [entry['blog'], id])
+    return render_template('entry.html', entry=entry, blog=blog, next=next, prev=prev)
 
 @app.get('/edit')
 def edit_get():
