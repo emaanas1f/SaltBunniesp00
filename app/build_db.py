@@ -17,11 +17,11 @@ DROP TABLE IF EXISTS blogs;
 CREATE TABLE blogs (
     id INTEGER PRIMARY KEY AUTOINCREMENT, 
     title TEXT UNIQUE, 
-    user TEXT, 
+    author TEXT, 
     date_created DATETIME DEFAULT CURRENT_TIMESTAMP, 
     follows INTEGER DEFAULT 0, 
     views INTEGER DEFAULT 0, 
-    FOREIGN KEY (user) REFERENCES profiles(username)
+    FOREIGN KEY (author) REFERENCES profiles(username)
 );""")
 
 c.executescript("""
@@ -39,11 +39,9 @@ c.executescript("""
 DROP TABLE IF EXISTS edits;
 CREATE TABLE edits (
     entry INTEGER, 
-    user TEXT, 
     timestamp DATETIME DEFAULT CURRENT_TIMESTAMP, 
     updated_content TEXT, 
-    FOREIGN KEY (entry) REFERENCES entries(id), 
-    FOREIGN KEY (user) REFERENCES profiles(username)
+    FOREIGN KEY (entry) REFERENCES entries(id)
 );""")
 
 c.executescript("""
