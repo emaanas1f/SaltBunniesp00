@@ -2,6 +2,9 @@
 {% block title %}Blog{% endblock %}
 {% block content %}
 
+<h1>{{ blog.title }}</h1>
+<h2>By: {{ blog.author}}
+
 {% if entries %}
     <h2>Blog Entries</h2>
     <ul>
