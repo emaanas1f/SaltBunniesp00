@@ -3,7 +3,7 @@
 {% block content %}
 
 <h1>{{ blog.title }}</h1>
-<h2>By: {{ blog.author}}
+<h2>By: {{ blog.author }}</h2>
 
 {% if entries %}
     <h2>Blog Entries</h2>
@@ -18,7 +18,7 @@
     <p>No entries found in this blog.</p>
 {% endif %}
 
-{% if session.username == author %}
+{% if session.username == blog.author %}
     <a href="{{ url_for('create_get', id=request.args.get('id')) }}">
         <button>Add New Entry</button>
     </a>

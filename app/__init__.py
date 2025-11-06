@@ -53,7 +53,9 @@ def entry_get():
     id = request.args['id']
     entry = select_query("SELECT * FROM entries WHERE id=?", [id])[0]
     blog = select_query("SELECT * FROM blogs WHERE id=?", [entry['blog']])[0]
-    return render_template('entry.html', entry=entry, blog=blog)
+    next = select_query("SELECT * FROM entries WHERE blog=? AND id>? LIMIT 1", [entry['blog'], id])
+    prev = select_query("SELECT * FROM entries WHERE blog=? AND id<? LIMIT 1", [entry['blog'], id])
+    return render_template('entry.html', entry=entry, blog=blog, next=next, prev=prev)
 
 @app.get('/edit')
 def edit_get():
