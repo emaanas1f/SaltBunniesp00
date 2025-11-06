@@ -32,6 +32,7 @@ def profile_post():
 def blog_get():
     id = request.args['id']
     entries = select_query("SELECT id,content FROM entries WHERE blog=? ORDER BY date_created", [id])
+    general_query("UPDATE blogs SET views=views+1 WHERE id=?", [id])
     blog = select_query("SELECT * FROM blogs WHERE id=?", [id])[0]
     return render_template('blog.html', entries=entries, blog=blog)
 

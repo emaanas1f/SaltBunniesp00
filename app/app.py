@@ -36,13 +36,8 @@ def profile_post():
 def blog_get():
     id = request.args['id']
     entries = select_query("SELECT id,content FROM entries WHERE blog=? ORDER BY date_created", [id])
-<<<<<<< HEAD
-    blog = select_query("SELECT * FROM blogs WHERE id=?", [id])[0]
-    return render_template('blog.html', entries=entries, blog=blog)
-=======
-    general_query("UPDATE blog SET views = views + 1 WHERE id=?", [id])
+    general_query("UPDATE blogs SET views=views+1 WHERE id=?", [id])
     return render_template('blog.html', entries=entries)
->>>>>>> ff977705e0d889b9b6b1c74c1949dca76dd86ea6
 
 #use blog_post for follow
 
@@ -55,7 +50,7 @@ def translate_to(dictionary):
         output += dictionary[key].replace('|', "\|")
         output += "|||"
     output = output[:-3]
-    return output;
+    return output
 
 def translate_from(string):
     output = {}
