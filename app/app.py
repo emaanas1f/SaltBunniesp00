@@ -35,12 +35,22 @@ def profile_post():
 @app.get('/blog')
 def blog_get():
     id = request.args['id']
+    if len(select_query("SELECT * FROM follows WHERE user=?, blog=?", [session["username"], id])) != 0: 
+        followed = True
+    else:
+        followed = False
     entries = select_query("SELECT id,content FROM entries WHERE blog=? ORDER BY date_created", [id])
     general_query("UPDATE blogs SET views=views+1 WHERE id=?", [id])
     blog = select_query("SELECT * FROM blogs WHERE id=?", [id])[0]
-    return render_template('blog.html', entries=entries, blog=blog)
+    return render_template('blog.html', entries=entries, blog=blog, followed=followed)
 
-#use blog_post for follow
+@app.get('/follow')
+def follow_get():
+    id = request.args['id']
+    user = session["username"]
+    insert_query("follows", {"user": user, "blog": id})
+    general_query("UPDATE blogs SET follows=follows+1 WHERE id=?", [id])
+    return redirect(url_for('blog_get', id=id))
 
 def translate_to(dictionary):
     output = ""
