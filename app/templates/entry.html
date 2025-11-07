@@ -4,7 +4,9 @@
 
 {% if entry %}
     <article>
-        <p>{{ entry.content }}</p>
+        {% for field in entry.content %}
+        <{{ field["type"] }}>{{ field["content"] }}</{{ field["type"] }}>
+        {% endfor %}
         <small>Created on: {{ entry.date_created }}</small>
     </article>
     {% if prev|length > 0 %}

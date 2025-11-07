@@ -37,7 +37,8 @@ def blog_get():
     id = request.args['id']
     entries = select_query("SELECT id,content FROM entries WHERE blog=? ORDER BY date_created", [id])
     general_query("UPDATE blogs SET views=views+1 WHERE id=?", [id])
-    return render_template('blog.html', entries=entries)
+    blog = select_query("SELECT * FROM blogs WHERE id=?", [id])[0]
+    return render_template('blog.html', entries=entries, blog=blog)
 
 #use blog_post for follow
 
@@ -45,21 +46,19 @@ def translate_to(dictionary):
     output = ""
     # p-lorem ipsum|||
     for key in dictionary:
-        output += key.split('-', 1)[1]
-        output += "-"
-        output += dictionary[key].replace('|', "\|")
-        output += "|||"
+        dictionary[key].replace('|', "\|")
+        output += f"{key}-{dictionary[key]}|||"
     output = output[:-3]
     return output
 
 def translate_from(string):
-    output = {}
-    # {"p": "lorem ipsum"}
+    output = []
+    # [("p", "lorem ipsum")]
     partial = string.split("|||")
     for field in partial:
         field = field.replace("\|", "|")
         field = field.split("-", 1)
-        output[field[0]] = field[1]
+        output.append({"type": field[0], "content": field[1]})
     return output
 
 @app.get('/create')
@@ -67,20 +66,21 @@ def create_get():
     id = request.args['id']
     return render_template('create.html', id=id)
 
+# create entry
 @app.post('/create')
 def create_post():
     id = request.args['id']
-    content = translate_to(request.form['content'])
+    content = translate_to(request.form)
     new_entry = insert_query("entries", {"blog": id, "content": content})
     insert_query("edits", {"entry": new_entry['id'], "updated_content": content})
-    return redirect(url_for("entry_get", id=id))
+    return redirect(url_for("entry_get", id=new_entry["id"]))
 
 # display specific entry
 @app.get('/entry')
 def entry_get():
     id = request.args['id']
     entry = select_query("SELECT * FROM entries WHERE id=?", [id])[0]
-    entry[]
+    entry['content'] = translate_from(entry['content'])
     blog = select_query("SELECT * FROM blogs WHERE id=?", [entry['blog']])[0]
     next = select_query("SELECT * FROM entries WHERE blog=? AND id>? LIMIT 1", [entry['blog'], id])
     prev = select_query("SELECT * FROM entries WHERE blog=? AND id<? LIMIT 1", [entry['blog'], id])
@@ -90,16 +90,16 @@ def entry_get():
 @app.get('/edit')
 def edit_get():
     id = request.args['id']
-    entry = select_query("SELECT id,content FROM entries WHERE id=?", [id])
+    entry = select_query("SELECT id,content FROM entries WHERE id=?", [id])[0]
+    entry['content'] = translate_from(entry['content'])
     return render_template('edit.html', entry=entry)
 
 # update entry with new content
 @app.post('/edit')
 def edit_post():
     id = request.args['id']
-    content = request.form['content']
-    user = session['username']
-    new_edit = insert_query("edits", {"entry": id, "user": user, "updated_content": content})
+    content = translate_to(request.form)
+    new_edit = insert_query("edits", {"entry": id, "updated_content": content})
     general_query("UPDATE entries SET content=?,recent_edit=? WHERE id=?", [content, new_edit['timestamp'], id])
     return redirect(url_for("entry_get", id=id))
 

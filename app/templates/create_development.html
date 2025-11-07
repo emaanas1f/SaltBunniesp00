@@ -4,9 +4,10 @@
 
 <h2>Create New Entry</h2>
 <form method="POST" action="{{ url_for('create_post', id=id) }}">
-    <p>Header</p>
     <textarea name="h1" placeholder="Entry Content" rows="10" cols="50" required></textarea><br>
-    <p>Paragaph</p>
+    <textarea name="h2" placeholder="Entry Content" rows="10" cols="50" required></textarea><br>
+    <textarea name="h2" placeholder="Entry Content" rows="10" cols="50" required></textarea><br>
+    <textarea name="h4" placeholder="Entry Content" rows="10" cols="50" required></textarea><br>
     <textarea name="p" placeholder="Entry Content" rows="10" cols="50" required></textarea><br>
     <input type="submit" value="Create Entry">
 </form>
