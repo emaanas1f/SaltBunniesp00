@@ -149,3 +149,21 @@ jamesL -- 2025-11-05 11:00
 
 emaanA -- 2025-11-05 11:00
 - messed around with css for auth html pages 
+
+kiranS -- 2025-11-06 11:00
+- added view functionality to middleware
+- cleaned data initialization code
+- renamed some columns and removed unnecessary ones
+
+emaanA -- 2025-11-06 11:00
+- worked with css on the header
+
+jamesL -- 2025-11-06 11:00
+- displayed more information about blog on blog page
+- continued working on different fields in blogs
+- added cycle functionality for entries in a blog
+
+jamesL -- 2025-11-06 19:00
+- generalized edit and entry to handle multiple fields
+- moved field features to production
+- integrated auth_production and auth
