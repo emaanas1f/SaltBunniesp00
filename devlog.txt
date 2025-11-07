@@ -167,3 +167,6 @@ jamesL -- 2025-11-06 19:00
 - generalized edit and entry to handle multiple fields
 - moved field features to production
 - integrated auth_production and auth
+
+kiranS -- 2025-11-07 11:00
+- add follow functionality

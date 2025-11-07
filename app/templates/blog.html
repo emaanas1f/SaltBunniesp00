@@ -5,6 +5,7 @@
 <h1>{{ blog.title }}</h1>
 <h2>By: {{ blog.author }}</h2>
 <h4>Views: {{ blog.views }}</h4>
+<h4>Follows: {{blog.follows}}</h4>
 
 {% if entries %}
     <h2>Blog Entries</h2>
@@ -17,6 +18,10 @@
     </ul>
 {% else %}
     <p>No entries found in this blog.</p>
+{% endif %}
+
+{%if followed %}
+    <a href="{{ url_for("follow_get, id=request.args.get('id')")}}"> <button>Follow Blog</button>
 {% endif %}
 
 {% if session.username == blog.author %}
