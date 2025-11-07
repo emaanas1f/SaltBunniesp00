@@ -1,3 +1,8 @@
+html {
+    background-color: white;
+    font-family: verdana;
+}
+
 header * {
     padding: 20px;
 
@@ -5,9 +10,23 @@ header * {
     font-family: verdana;
     text-align: right;
     text-decoration: none;
-    font-size: 25px
+    font-size: 24px
 }
 
 div * {
     text-align: center;
+}
+
+title * {
+    text-align: center;
+    font-size: 24px;    
+}
+
+h1 * {
+    color: white;
+}
+
+p * {
+    font-family: verdana;
+    color: white;
 }
