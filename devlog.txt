@@ -170,3 +170,7 @@ jamesL -- 2025-11-06 19:00
 
 kiranS -- 2025-11-07 11:00
 - add follow functionality
+
+kiranS -- 2025-11-07 20:00
+- fixed follow functionality
+- added followed blogs display on profile

@@ -17,8 +17,9 @@ def home_get():
 @app.get('/profile')
 def profile_get():
     user = session['username']
-    blogs = select_query("SELECT id, title FROM blogs WHERE author=?", [user])
-    return render_template('profile.html', blogs=blogs)
+    user_blogs = select_query("SELECT id, title FROM blogs WHERE author=?", [user])
+    followed_blogs = select_query("SELECT blogs.id, blogs.title FROM follows JOIN blogs ON follows.blog = blogs.id WHERE follows.user=?", [user])
+    return render_template('profile.html', user_blogs=user_blogs, followed_blogs=followed_blogs)
 
 # create blog
 @app.post('/profile')
@@ -35,7 +36,7 @@ def profile_post():
 @app.get('/blog')
 def blog_get():
     id = request.args['id']
-    if len(select_query("SELECT * FROM follows WHERE user=?, blog=?", [session["username"], id])) != 0: 
+    if len(select_query("SELECT * FROM follows WHERE user=? AND blog=?", [session["username"], id])) != 0: 
         followed = True
     else:
         followed = False
@@ -44,6 +45,7 @@ def blog_get():
     blog = select_query("SELECT * FROM blogs WHERE id=?", [id])[0]
     return render_template('blog.html', entries=entries, blog=blog, followed=followed)
 
+#update follow counter and table on follow
 @app.get('/follow')
 def follow_get():
     id = request.args['id']
