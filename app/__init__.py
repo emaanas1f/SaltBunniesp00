@@ -26,7 +26,7 @@ def profile_get():
     user = session['username']
     user_blogs = select_query("SELECT id, title FROM blogs WHERE author=?", [user])
     followed_blogs = select_query("SELECT blogs.id, blogs.title FROM follows JOIN blogs ON follows.blog = blogs.id WHERE follows.user=?", [user])
-    return render_template('profile.html', user_blogs=user_blogs, followed_blogs=followed_blogs)
+    return render_template('profile.html', user_blogs=user_blogs, followed_blogs=followed_blogs, user = user)
 
 # create blog
 @app.post('/profile')
@@ -43,10 +43,7 @@ def profile_post():
 @app.get('/blog')
 def blog_get():
     id = request.args['id']
-    if len(select_query("SELECT * FROM follows WHERE user=? AND blog=?", [session["username"], id])) != 0: 
-        followed = True
-    else:
-        followed = False
+    followed = select_query("SELECT * FROM follows WHERE user=? AND blog=?", [session["username"], id])
     entries = select_query("SELECT id,content FROM entries WHERE blog=? ORDER BY date_created", [id])
     general_query("UPDATE blogs SET views=views+1 WHERE id=?", [id])
     blog = select_query("SELECT * FROM blogs WHERE id=?", [id])[0]
