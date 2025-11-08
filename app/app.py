@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, flash, redirect, session, url_for
 from db import select_query, insert_query, general_query
+from datetime import datetime, timedelta
 
 app = Flask(__name__)
 app.secret_key = "dkjflkaklkjdfsa"
@@ -93,6 +94,7 @@ def entry_get():
     id = request.args['id']
     entry = select_query("SELECT * FROM entries WHERE id=?", [id])[0]
     entry['content'] = translate_from(entry['content'])
+    entry['date_created'] = datetime.strptime(entry['date_created'], "%Y-%m-%d %H:%M:%S") - timedelta(hours=5)
     blog = select_query("SELECT * FROM blogs WHERE id=?", [entry['blog']])[0]
     next = select_query("SELECT * FROM entries WHERE blog=? AND id>? LIMIT 1", [entry['blog'], id])
     prev = select_query("SELECT * FROM entries WHERE blog=? AND id<? LIMIT 1", [entry['blog'], id])

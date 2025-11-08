@@ -20,7 +20,7 @@
     <p>No entries found in this blog.</p>
 {% endif %}
 
-{%if not followed %}
+{%if not followed and session.username != blog.author %}
     <a href="{{ url_for('follow_get', id=request.args.get('id')) }}"> <button>Follow Blog</button>
 {% endif %}
 
