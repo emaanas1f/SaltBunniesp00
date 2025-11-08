@@ -5,7 +5,6 @@ html {
 
 header * {
     padding: 20px;
-
     color: steelblue;
     font-family: verdana;
     text-align: right;
@@ -29,4 +28,14 @@ h1 * {
 p * {
     font-family: verdana;
     color: white;
+}
+
+label {
+    display: block;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+textarea {
+    font-family: verdana;
 }

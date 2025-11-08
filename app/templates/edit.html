@@ -4,14 +4,21 @@
 
 <h2>Edit Entry</h2>
 {% if entry %}
-    <form method="POST" action="{{ url_for('edit_post', id=entry.id) }}">
-        {% for field in entry.content %}
-        <textarea name="{{ field['type'] }}" rows="10" cols="50" required>{{ field["content"] }}</textarea><br>
-        {% endfor %}
-        <input type="submit" value="Save Changes">
-    </form>
+<form method="POST" action="{{ url_for('edit_post', id=entry.id) }}">
+    {% for field in entry.content %}
+    <label for="{{ field['type']}}">
+        {% if field['type'] == "p" %}
+        Content
+        {% elif field['type'] == "h2" %}
+        Header
+        {% endif %}
+    </label>
+    <textarea name="{{ field['type'] }}" rows="10" cols="50" required>{{ field["content"] | replace("<br>", "") }}</textarea><br>
+    {% endfor %}
+    <br><input type="submit" value="Save Changes">
+</form>
 {% else %}
-    <p>Entry not found.</p>
+<p>Entry not found.</p>
 {% endif %}
 
 {% endblock %}
