@@ -174,3 +174,7 @@ kiranS -- 2025-11-07 11:00
 kiranS -- 2025-11-07 20:00
 - fixed follow functionality
 - added followed blogs display on profile
+
+kiranS -- 2025-11-08 21:00
+- adjusted displayed timestamp for EST
+- prevented users from following blogs they created
