@@ -2,21 +2,25 @@
 {% block title %}Home{% endblock %}
 {% block content %}
 
-<h1>
-    Welcome!
-</h1>
+<section class="hero">
+    <h1>Welcome to BlogHub</h1>
+    <p>Discover amazing stories and share your own experiences</p>
+</section>
 
-{% if blogs %}
-    <h2>All Blogs</h2>
-    <ul>
-    {% for blog in blogs %}
-        <li>
-            <a href="{{ url_for('blog_get', id=blog.id) }}">{{ blog.title }}</a>
-        </li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No blogs found.</p>
-{% endif %}
+<div class="card">
+    {% if blogs %}
+        <h2>Featured Blogs</h2>
+        <div class="blog-list">
+        {% for blog in blogs %}
+            <div class="blog-item">
+                <h3><a href="{{ url_for('blog_get', id=blog.id) }}">{{ blog.title }}</a></h3>
+                <div class="blog-meta">By {{ blog.author }}</div>
+            </div>
+        {% endfor %}
+        </div>
+    {% else %}
+        <p>No blogs found. Be the first to create one!</p>
+    {% endif %}
+</div>
 
 {% endblock %}
