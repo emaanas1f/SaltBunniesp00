@@ -19,9 +19,9 @@
         Header
         {% endif %}
     </label>
-    <textarea name="{{ field['type'] }}" rows="10" cols="50" required>{{ field["content"] | replace("<br>", "") }}</textarea><br>
+    <textarea name="{{ field['type'] }}" rows="5" cols="50" required>{{ field["content"] | replace("<br>", "") }}</textarea><br>
     {% endfor %}
-    <br><input type="submit" value="Save Changes">
+    <input type="submit" value="Save Changes">
 </form>
 {% else %}
 <p>Entry not found.</p>

@@ -16,14 +16,15 @@
         {% endfor %}
         <small>Created on: {{ entry.date_created }}</small>
     </article>
-    {% if prev|length > 0 %}
-    <a href="{{ url_for('entry_get', id=prev[-1]['id']) }}">Previous Entry</a>
-    {% endif %}
-    {% if next|length > 0 %}
-    <a href="{{ url_for('entry_get', id=next[0]['id']) }}">Next Entry</a>
-    {% endif %}
+    <div class="entry-scroll">
+        {% if prev|length > 0 %}
+        <a href="{{ url_for('entry_get', id=prev[-1]['id']) }}">Previous Entry</a>
+        {% endif %}
+        {% if next|length > 0 %}
+        <a href="{{ url_for('entry_get', id=next[0]['id']) }}">Next Entry</a>
+        {% endif %}
+    </div>
     {% if session.username == blog['author'] %}
-    <br><br>
     <a href="{{ url_for('edit_get', id=request.args.get('id')) }}">
         <button>Edit Entry</button>
     </a>

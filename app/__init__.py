@@ -16,7 +16,7 @@ app.register_blueprint(auth.bp)
 @app.before_request
 def check_authentification():
     if 'username' not in session.keys() and request.blueprint != 'auth' and request.endpoint != 'static':
-        flash("Please log in to view our website")
+        flash("Please log in to view our website", "error")
         return redirect(url_for("auth.login_get"))
 
 # displays all blogs
@@ -39,7 +39,7 @@ def profile_post():
     title = request.form['title']
     user = session['username']
     if len(select_query("SELECT * FROM blogs WHERE title=?", [title])) != 0:
-        flash("Blog with that name already exists!")
+        flash("Blog with that name already exists!", "error")
         return redirect('/profile')
     new_blog = insert_query("blogs", {"title": title, "author": user})
     return redirect(url_for('blog_get', id=new_blog['id']))
@@ -61,6 +61,14 @@ def follow_get():
     user = session["username"]
     insert_query("follows", {"user": user, "blog": id})
     general_query("UPDATE blogs SET follows=follows+1 WHERE id=?", [id])
+    return redirect(url_for('blog_get', id=id))
+
+@app.get('/unfollow')
+def unfollow_get():
+    id = request.args['id']
+    user = session["username"]
+    general_query("DELETE FROM follows WHERE user=? AND blog=?", [user, id])
+    general_query("UPDATE blogs SET follows=follows-1 WHERE id=?", [id])
     return redirect(url_for('blog_get', id=id))
 
 def translate_to(dictionary):
@@ -127,4 +135,5 @@ def edit_post():
     return redirect(url_for("entry_get", id=id))
 
 if __name__ == "__main__":
+    app.debug = True
     app.run()

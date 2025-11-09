@@ -79,6 +79,11 @@ a:hover {
     text-decoration: underline;
 }
 
+label {
+    display: block;
+    margin-bottom: 10px;
+}
+
 input[type="text"],
 input[type="password"],
 textarea {
@@ -88,11 +93,12 @@ textarea {
     border: 1px solid #ccc;
     border-radius: 3px;
     font-size: 14px;
+    font-family: Arial, sans-serif;
 }
 
 textarea {
-    height: 100px;
     resize: vertical;
+    field-sizing: content;
 }
 
 input[type="submit"],
@@ -122,11 +128,29 @@ button:hover {
     margin-top: 0;
 }
 
+.entry-scroll {
+    display: block;
+    margin-bottom: 15px;
+}
+
 .flashes {
+    padding: 10px;
     position: absolute;
     bottom: 20px;
     right: 20px;
     margin: 8px;
+}
+
+.error {
+    background-color: #FF474C;
+}
+
+.info {
+    background-color: #90D5FF;
+}
+
+.success {
+    background-color: #88E788;
 }
 
 .flashes *:last-child {
@@ -148,4 +172,17 @@ div[style*="text-align: center"] {
     border: 1px solid #ddd;
     max-width: 400px;
     margin: 0 auto;
+}
+
+.blog-item {
+    margin-bottom: 10px;
+}
+
+.views h4 {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+.views h4:first-child {
+    margin-left: 0;
 }

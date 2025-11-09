@@ -11,9 +11,9 @@
 <h2>Create New Entry</h2>
 <form method="POST" action="{{ url_for('create_post', id=id) }}">
     <label for="h2">Header</label>
-    <textarea name="h2" placeholder="Entry Content" rows="2" cols="50" required></textarea><br>
+    <textarea name="h2" placeholder="Entry Header" rows="2" cols="50" required></textarea><br>
     <label for="p">Content</label>
-    <textarea name="p" placeholder="Entry Content" rows="10" cols="50" required></textarea><br><br>
+    <textarea name="p" placeholder="Entry Content" rows="10" cols="50" required></textarea><br>
     <input type="submit" value="Create Entry">
 </form>
 

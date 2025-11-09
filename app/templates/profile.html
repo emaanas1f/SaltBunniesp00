@@ -36,7 +36,7 @@
 {% endif %}
 
 <form method="post" action="{{ url_for('profile_post') }}">
-    <input type="text" name="title">
+    <input type="text" name="title" placeholder="Blog Name" required>
     <input type="submit" value="Create Blog">
 </form>
 
