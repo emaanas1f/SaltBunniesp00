@@ -32,6 +32,14 @@ header a:hover {
     border-radius: 3px;
 }
 
+header div {
+    display: inline-block;
+}
+
+nav div:last-child {
+    float: right;
+}
+
 h1 {
     color: #2c5282;
     margin-bottom: 15px;
@@ -55,6 +63,7 @@ ul {
     margin-bottom: 15px;
     list-style-type: disc;
     margin-left: 20px;
+    padding-left: 10px;
 }
 
 li {
@@ -102,11 +111,26 @@ button:hover {
     background-color: #1a365d;
 }
 
-.content {
+.content, .flashes {
     background-color: white;
     padding: 20px;
     border-radius: 5px;
     border: 1px solid #ddd;
+}
+
+.content *:first-child {
+    margin-top: 0;
+}
+
+.flashes {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    margin: 8px;
+}
+
+.flashes *:last-child {
+    margin: 0;
 }
 
 article {

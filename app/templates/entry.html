@@ -9,7 +9,7 @@
 {% block content %}
 
 {% if entry %}
-    <h1>Blog: {{ blog['title'] }}</h1>
+    <h1><a href="{{ url_for('blog_get', id=blog['id']) }}">Blog: {{ blog['title'] }}</a></h1>
     <article>
         {% for field in entry.content %}
         <{{ field["type"] }}>{{ field["content"]|safe }}</{{ field["type"] }}>
