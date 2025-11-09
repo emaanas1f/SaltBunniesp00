@@ -198,3 +198,6 @@ lucasZ -- 2025-11-09 15:30
 jamesL -- 2025-11-09 16:45
 - added more styling
 - added unfollow feature
+
+emaanA -- 2025-11-09 17:45
+- uploading updated design doc
