@@ -17,7 +17,7 @@ def check_authentification():
 # displays all blogs
 @app.get('/')
 def home_get():
-    blogs = select_query('SELECT id, title FROM blogs')
+    blogs = select_query('SELECT id, title, author FROM blogs')
     return render_template('home.html', blogs=blogs)
 
 # display created blogs
