@@ -1,3 +1,8 @@
+# Emaan Asif, James Lei, Kiran Soemardjo, Lucas Zheng
+# SoftDev
+# P00
+# Nov 2025
+
 import sqlite3
 
 DB_FILE="data.db"

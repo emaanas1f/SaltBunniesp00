@@ -184,7 +184,10 @@ jamesL -- 2025-11-08 07:45
 - restricted viewing to logged-in users
 - added functionality for adding paragraphs
 
-kiranS 2025-11-08 15:30
+kiranS -- 2025-11-08 15:30
 - streamlined blog_get() code in __init__
 - added username display in profile
 - Fixed headings in profile and home
+
+emaanA -- 2025-11-09 15:20 
+- added headings to files 

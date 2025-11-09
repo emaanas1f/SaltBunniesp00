@@ -1,3 +1,8 @@
+# Emaan Asif, James Lei, Kiran Soemardjo, Lucas Zheng
+# SoftDev
+# P00
+# Nov 2025
+
 from flask import Flask, render_template, request, flash, redirect, session, url_for
 from db import select_query, insert_query, general_query
 from datetime import datetime, timedelta

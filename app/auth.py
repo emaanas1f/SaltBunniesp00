@@ -1,3 +1,8 @@
+# Emaan Asif, James Lei, Kiran Soemardjo, Lucas Zheng
+# SoftDev
+# P00
+# Nov 2025
+
 from flask import Blueprint, render_template, request, redirect, url_for, session, flash
 from db import select_query, insert_query
 from werkzeug.security import generate_password_hash, check_password_hash
