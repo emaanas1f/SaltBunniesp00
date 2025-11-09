@@ -191,3 +191,10 @@ kiranS -- 2025-11-08 15:30
 
 emaanA -- 2025-11-09 15:20 
 - added headings to files 
+
+lucasZ -- 2025-11-09 15:30
+- added more styling
+
+jamesL -- 2025-11-09 16:45
+- added more styling
+- added unfollow feature
