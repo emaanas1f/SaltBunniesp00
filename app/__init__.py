@@ -135,5 +135,4 @@ def edit_post():
     return redirect(url_for("entry_get", id=id))
 
 if __name__ == "__main__":
-    app.debug = True
     app.run()
